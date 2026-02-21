@@ -33,6 +33,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import dev.kimsu.daenamutouchphone.ui.screens.AmsScreen
 import dev.kimsu.daenamutouchphone.ui.screens.ControlScreen
 import dev.kimsu.daenamutouchphone.ui.screens.HomeScreen
@@ -41,14 +44,40 @@ import dev.kimsu.daenamutouchphone.ui.theme.DaenamutouchphoneTheme
 import dev.kimsu.daenamutouchphone.viewmodel.PrinterViewModel
 
 class MainActivity : ComponentActivity() {
+
+    private fun setImmersiveFullscreen() {
+        // 콘텐츠를 시스템 바 영역까지 확장
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+
+        // 상태바 + 내비게이션바 숨김
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+
+        // 스와이프로 잠깐 시스템 바 표시(일반적인 immersive 동작)
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 있어도 되고 없어도 됩니다. (위에서 decorFitsSystemWindows=false로 edge-to-edge 구성함)
         enableEdgeToEdge()
+
+        setImmersiveFullscreen()
+
         setContent {
             DaenamutouchphoneTheme {
                 DaenamutouchphoneApp()
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 화면 전환/포커스 변화로 시스템 바가 다시 나타날 수 있어 재적용
+        setImmersiveFullscreen()
     }
 }
 
@@ -69,7 +98,7 @@ fun DaenamutouchphoneApp() {
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     if (isLandscape) {
-        // ── Landscape: NavigationRail on left, content on right ──────────────
+        // Landscape: NavigationRail on left, content on right
         Row(modifier = Modifier.fillMaxSize()) {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             val currentDest = navBackStackEntry?.destination
@@ -105,7 +134,7 @@ fun DaenamutouchphoneApp() {
             }
         }
     } else {
-        // ── Portrait: NavigationBar at bottom (original layout) ──────────────
+        // Portrait: NavigationBar at bottom
         Scaffold(
             bottomBar = {
                 NavigationBar {
