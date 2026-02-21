@@ -1,0 +1,6 @@
+<resources>
+    <!-- Dark-mode XML theme: android:Theme.Material.NoActionBar (without 'Light')
+         sets windowLightStatusBar=false on API 26+, so enableEdgeToEdge() renders
+         white/light status-bar icons that are visible on a dark background. -->
+    <style name="Theme.Daenamutouchphone" parent="android:Theme.Material.NoActionBar" />
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Network security configuration for XPTouch.
+
+  Bambu Lab printers on the local network (LAN mode) use self-signed TLS certificates.
+  Certificate validation for LAN connections is handled in code (BambuMqttService)
+  by accepting all certificates when lanOnlyMode = true, so no special domain config
+  is needed here.  Cloud connections use the system trust-store (default behaviour).
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

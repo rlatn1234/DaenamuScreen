@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Launcher icon foreground: bamboo stalk (left) + smartphone (right)
+  Designed to sit within the 72x72 safe zone (18dp inset on each side of 108x108).
+  All paths use white (#FFFFFF) to contrast against the Bambu-green background.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ═══ SMARTPHONE body ═══ -->
+    <!-- Rounded rectangle: x=55, y=22, w=30, h=52, rx=5 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="
+          M55,27
+          Q55,22 60,22
+          L80,22
+          Q85,22 85,27
+          L85,69
+          Q85,74 80,74
+          L60,74
+          Q55,74 55,69
+          Z" />
+    <!-- Screen area (dark cutout gives depth — use green to match background) -->
+    <path
+        android:fillColor="#1DBF73"
+        android:pathData="M58,30 L82,30 L82,64 L58,64 Z" />
+    <!-- Home button pill -->
+    <path
+        android:fillColor="#1DBF73"
+        android:pathData="M67,67 Q70,65 73,67 Q70,69 67,67 Z" />
+
+    <!-- ═══ BAMBOO STALK ═══ -->
+    <!-- Main vertical stalk: a thin rounded rect x=28..36, y=18..88 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,20 Q28,18 32,18 Q36,18 36,20 L36,86 Q36,88 32,88 Q28,88 28,86 Z" />
+
+    <!-- Node band 1 at y≈36 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,34 Q25,32 32,32 Q39,32 39,34 L39,38 Q39,40 32,40 Q25,40 25,38 Z" />
+    <!-- Node band 2 at y≈54 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,52 Q25,50 32,50 Q39,50 39,52 L39,56 Q39,58 32,58 Q25,58 25,56 Z" />
+    <!-- Node band 3 at y≈72 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M25,70 Q25,68 32,68 Q39,68 39,70 L39,74 Q39,76 32,76 Q25,76 25,74 Z" />
+
+    <!-- Leaf 1: upper-right leaf from node 1 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,36 Q50,28 52,20 Q44,22 36,32 Z" />
+    <!-- Leaf 2: lower-left leaf from node 2 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,54 Q14,46 12,36 Q20,40 28,50 Z" />
+    <!-- Leaf 3: upper-right leaf from node 3 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M36,72 Q49,64 51,55 Q44,59 36,68 Z" />
+
+</vector>
